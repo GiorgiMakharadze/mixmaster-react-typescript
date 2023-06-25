@@ -1,8 +1,10 @@
 import Wrapper from "../assets/wrappers/ErrorPage";
 import { Link, useRouteError } from "react-router-dom";
 import img from "../assets/not-found.svg";
-import { IRouteError } from "../types/RouterErrorProps";
+import { IRouteError } from "../types";
 const Error = () => {
+  console.log("Error component rendered");
+
   const error = useRouteError() as IRouteError;
   console.log(error);
   if (error.status === 404) {
