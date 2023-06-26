@@ -1,31 +1,32 @@
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useNavigation, useSubmit } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { IRequestDataProps } from "../types";
 
 const newsletterUrl = "https://www.course-api.com/cocktails-newsletter";
 
-export const action = async ({ request }: any) => {
+export const action = async ({ request }: IRequestDataProps) => {
   try {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
-    console.log("Sending data:", data);
 
     const response = await axios.post(newsletterUrl, data);
-    console.log("Response received:", response);
 
     toast.success(response.data.msg);
     return redirect("/");
   } catch (error: any | Error) {
-    console.error("Error during form submission:", error);
     if (error.response) {
       console.error("Server responded with:", error.response.data);
     }
-    toast.error("Form submission failed");
-    return null;
+    toast.error(error?.response?.data?.msg);
+    return error;
   }
 };
 
 const Newsletter = () => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
   return (
     <Form className="form" method="POST">
       <h4 style={{ textAlign: "center", marginBottom: "2rem" }}>
@@ -74,8 +75,9 @@ const Newsletter = () => {
         type="submit"
         className="btn btn-block"
         style={{ marginTop: "0.5rem" }}
+        disabled={isSubmitting}
       >
-        Submit
+        {isSubmitting ? "submitting" : "submit"}
       </button>
     </Form>
   );

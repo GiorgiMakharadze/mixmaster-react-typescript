@@ -27,3 +27,7 @@ export interface IFetchedDataProps {
   info: string;
   glass: string;
 }
+
+export interface IRequestDataProps {
+  request: any;
+}
