@@ -25,14 +25,17 @@ const router = createBrowserRouter([
       {
         path: "cocktail",
         element: <Cocktail />,
+        errorElement: <SinglePageError />,
       },
       {
         path: "newsletter",
         element: <Newsletter />,
+        errorElement: <SinglePageError />,
       },
       {
         path: "about",
         element: <About />,
+        errorElement: <SinglePageError />,
       },
     ],
   },

@@ -1,4 +1,6 @@
 import { IRouteError } from "./RouterErrorProps";
-import { ILoaderData } from "./LoadetProps";
+import { IDrinkProps } from "./DrinkProps";
+import { ILoaderData } from "./DrinkProps";
+import { ICocktailCardProps } from "./DrinkProps";
 
-export type { IRouteError, ILoaderData };
+export type { IRouteError, ILoaderData, ICocktailCardProps, IDrinkProps };
