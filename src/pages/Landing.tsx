@@ -5,6 +5,9 @@ import { ILoaderData, IRequestDataProps } from "../types";
 import CocktailList from "../components/CocktailList";
 import SearchForm from "../components/SearchForm";
 
+const cocktailSearchUrl =
+  "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+
 const searchCocktailsQuery = (searchTerm: string) => {
   return {
     queryKey: ["search", searchTerm || "all"],
@@ -14,9 +17,6 @@ const searchCocktailsQuery = (searchTerm: string) => {
     },
   };
 };
-
-const cocktailSearchUrl =
-  "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 
 export const loader =
   (queryClient: QueryClient) =>
