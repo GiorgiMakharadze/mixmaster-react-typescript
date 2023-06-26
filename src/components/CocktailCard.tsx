@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import Wrapper from "../assets/wrappers/CocktailCard";
+import { IFetchedDataProps } from "../types";
 
-const CocktailCard = ({ image, name, id, info, glass }: any) => {
+const CocktailCard = ({ image, name, id, info, glass }: IFetchedDataProps) => {
   return (
     <Wrapper>
       <div className="img-container">

@@ -3,12 +3,8 @@ import { IRouteError } from "../types";
 
 const SinglePageError = () => {
   const error = useRouteError() as IRouteError;
-  console.log("Error object: ", error);
 
-  // Log the error status
-  console.log("Error status: ", error.status);
-
-  console.log(error);
+  console.log("Error", error);
 
   return <div>{error.message}</div>;
 };
