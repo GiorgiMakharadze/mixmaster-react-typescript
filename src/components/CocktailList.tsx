@@ -1,4 +1,4 @@
-import { ICocktailCardProps, IDrinkProps, ILoaderData } from "../types";
+import { ILoaderData } from "../types";
 import Wrapper from "../assets/wrappers/CocktailList";
 import CocktailCard from "./CocktailCard";
 

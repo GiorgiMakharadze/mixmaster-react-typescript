@@ -18,7 +18,7 @@ const Landing = () => {
 
   return (
     <>
-      <CocktailList drinks={drinks} />
+      <CocktailList drinks={drinks} searchTerm={""} />
     </>
   );
 };
