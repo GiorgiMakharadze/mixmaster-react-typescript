@@ -22,7 +22,7 @@ const CocktailList = ({ drinks }: ILoaderData) => {
 
   return (
     <Wrapper>
-      {formattedDrinks.map((item) => {
+      {formattedDrinks.map((item: any) => {
         return <CocktailCard key={item.id} {...item} />;
       })}
     </Wrapper>
