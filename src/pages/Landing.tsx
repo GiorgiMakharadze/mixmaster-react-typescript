@@ -1,8 +1,19 @@
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import { ILoaderData, IRequestDataProps } from "../types";
 import CocktailList from "../components/CocktailList";
 import SearchForm from "../components/SearchForm";
+
+const searchCocktailsQuery = (searchTerm: string) => {
+  return {
+    queryKey: ["search", searchTerm || "all"],
+    queryFn: async () => {
+      const response = await axios.get(`${cocktailSearchUrl}${searchTerm}`);
+      return response.data?.drinks;
+    },
+  };
+};
 
 const cocktailSearchUrl =
   "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
@@ -10,13 +21,13 @@ const cocktailSearchUrl =
 export const loader = async ({ request }: IRequestDataProps) => {
   const url = new URL(request.url);
   const searchTerm = url.searchParams.get("search") || "";
-  const response = await axios.get(`${cocktailSearchUrl}${searchTerm}`);
 
-  return { drinks: response.data.drinks, searchTerm };
+  return { searchTerm };
 };
 
 const Landing = () => {
-  const { drinks, searchTerm } = useLoaderData() as ILoaderData;
+  const { searchTerm } = useLoaderData() as ILoaderData;
+  const { data: drinks } = useQuery(searchCocktailsQuery(searchTerm));
 
   return (
     <>
